@@ -30,7 +30,7 @@ You should put each night's homework in a new folder within the appropriate dire
 
 1. Open Terminal/iTerm2;
 2. Go to your local homework repo (eg, `cd ~/wdi/wdi20-homework`);
-3. From here, go to the folder matching your name within that repo, and the appropriate week (eg, `groucho_marx/week_01`);
+3. From here, go to the folder matching your name within that repo, and the appropriate week (eg, `groucho_marx/week01`);
 4. Create new folders for each of the day's homework tasks: (eg `mkdir calculator` and `mkdir strings`);
 5. Create the files necessary to complete the homework in their respective directories;
 6. Get to it!
