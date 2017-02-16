@@ -1,3 +1,73 @@
+// Bank
+
+var getAccountIndex = function(user, accList) {
+  for (i in accList) {
+    if (user === accList[i].name) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+var bank = {
+    account: [
+      {name: 'Jack', balance: 1000},
+      {name: 'Luke', balance: 2000},
+      {name: 'Xander', balance: 1500}
+    ],
+    // sum money from all accounts
+    sumMoney: function(){
+      var sum = 0;
+      this.account.forEach(function(acc){
+        sum += acc.balance;
+      });
+      console.log('Sum from all accounts: ' + sum);
+    },
+    // add new account
+    addAccount: function(newUser, deposit) {
+      var newAccount = { name: newUser, balance: deposit};
+      this.account.push(newAccount);
+    },
+    // deposit and withdraw money
+    depositWithdraw: function(name, amount) { // positive 'amount' = deposit; negative 'amount' = withdraw
+      var index = getAccountIndex(name, this.account);
+      if (index === -1) {
+        console.log('No existing user.');
+      } else {
+        if (amount<0) { // Withdraw
+          if (this.account[index].balance > -amount) { //Check balance
+            this.account[index].balance += amount;
+            console.log(name + ' withdrawn: ' + -amount);
+          } else { // Not enough money for withdrawal
+            console.log('Not enough balance.');
+          }
+        } else { // deposit
+          this.account[index].balance += amount;
+          console.log(name + ' deposit: ' + amount);
+        }
+      }
+    },
+    // transfer money between 2 accounts
+    transfer: function(fromAccName, toAccName, amount) {
+      var accIndex = [getAccountIndex(fromAccName, this.account), getAccountIndex(toAccName, this.account)];
+      if (accIndex.indexOf(-1) === -1) {
+        if (this.account[accIndex[0]].balance >= amount) { // if fromAccount have enough balance
+          this.depositWithdraw(this.account[accIndex[0]].name, -amount); // take out money from fromAcc
+          this.depositWithdraw(this.account[accIndex[1]].name, amount); // to toAcc
+        } else {
+          console.log('Not enough balance.');
+        }
+      } else {
+        console.log('Wrong input account name.');
+      }
+    }
+  }
+
+
+
+
+
+//----------------------------------------------------------------------------
 // Cash Register
 
 var cartForParty = {
