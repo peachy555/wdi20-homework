@@ -15,25 +15,34 @@ var guess = ['_', '_', '_'];  // line 5
 var word = ['F', 'O', 'X'];  // line 5
 
 var guessLetter = function (letter) {  // line 6, 7
+  var correct = false;
   for (var i = 0; i < guess.length; i++) {  // line 8
     if (letter == word[i]) {  // line 9
       guess[i] = letter; // line 9
       console.log(guess.join(' '));  // line 10
       console.log('Congratulation! You found a new letter!');  // line 10
-    } else if (guess[i] == '_') {
-      console.log('Sadness.');
-    } else if (guess[i] != '_') {
-      console.log('YOU HAVE WON!');
+      var correct = true;
     }
   }
-}
+  if (correct) {
+    if (guess[0] != '_' && guess[1] != '_' && guess[2] != '_') {  // line 11
+      console.log('YOU HAVE WON!');  // line 11
+    }
+  } else {
+    console.log('Sadness.');  // line 11
+  }
+};
 
 guessLetter('F');
 guessLetter('Q');
-guessLetter('X');
-guessLetter('N');
 guessLetter('O');
+guessLetter('N');
+guessLetter('X');
 
+// var printLetter = function (ltr) {
+//   console.log(ltr);
+// }
+// word.forEach(printLetter);
 
 
 // Bonus: Make it more like Wheel of Fortune:
