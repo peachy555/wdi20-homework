@@ -1,76 +1,85 @@
-// You'll create a simple word guessing game where the user gets infinite tries to guess the word (like Hangman without the hangman, or like Wheel of Fortune without the wheel and fortune).
+// # JavaScript Bank
 //
-// Create two global arrays: one to hold the letters of the word (e.g. 'F', 'O', 'X'), and one to hold the current guessed letters (e.g. it would start with '_', '_', '_' and end with 'F', 'O', 'X').
-// Write a function called guessLetter that will:
-// Take one argument, the guessed letter.
-// Iterate through the word letters and see if the guessed letter is in there.
-// If the guessed letter matches a word letter, changed the guessed letters array to reflect that.
-// When it's done iterating, it should log the current guessed letters ('F__') and congratulate the user if they found a new letter.
-// It should also figure out if there are any more letters that need to be guessed, and if not, it should congratulate the user for winning the game.
-// Pretend you don't know the word, and call guessLetter multiple times with various letters to check that your program works.
-
-// var letters = ['f', 'o', 'x'];
-// var guesses = ['_', '_', '_'];
+// In this homework, youll create a basic `bank` in Javascript.
+// The bank has many `accounts` and the following capabilities that you need to write.
 //
-// var guessLetter = function(letter){
-//   for (var i = 0; i < letters.length; i++) {
-//     if(letter === letters[i]) {
-//       // we have a match
-//       guesses[i] = letter;
-//       console.log('Congratulation, you have found the letter ' + letter);
-//     }
-//   } //for
-//   console.log(guesses);
-// }; // function guessLetter
-// guessLetter('x');
+// #### Bank
 //
-// the full word has been guessed
-// maybe... consider a counter variable that counts how many correct guesses there have been?
-
-
-
-
-// var maxOfTwoNumbers = function(number1,number2){
-//     if (number1 > number2) {
-//       return number1;
-//     }else{
-//       return number2;
-//     }
-// }
+// There is only one bank. This bank has an array of accounts.
+// The bank needs a method that will return the total sum of money in the accounts.
+// It also needs an `addAccount` method that will enroll a new account at the bank and add it to the array of accounts.
+// There is no need to create additional functions of the bank to delete accounts, etc.
 //
-// maxOfTwoNumbers(9,5);
-
-
-
-
-//Define a function maxOfThree that takes three numbers as arguments and returns the largest of them.
-
-// var maxOfThree = function(number1,number2,number3){
-//   maxOfThree = number1;
-//   if (maxOfThree < number2) {
-//     maxOfThree = number2;
-//   }
-//   if (maxOfThree < number3) {
-//     maxOfThree = number3;
-//   }
-//   return maxOfThree;
-// }
-// maxOfThree(5,7,9);
-
-
-
-
-// Write a function that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise.
-
-// var vowelOrNot = function(letter){
-//   var vowels = ['a','e','i','o','u']
+// The bank has many accounts. Accounts should be objects that all share a set of common functionality.
 //
-//   for (var i = 0; i < vowels.length; i++) {
-//   if (letter === vowels[i]) {
-//     return true;
-//   }
-//     return false;
-//   }
-// }
+// #### Accounts
 //
-// vowelOrNot('b');
+// Accounts have a current balance and owners name. You should be able to deposit or withdraw from an account to change the balance.
+//
+// There is no need to write a user interface. Make sure functions return values -- you may also have
+// your functions `console.log()` values to help you see your code working.
+//
+// You should write a basic story through a series of JavaScript commands that shows that the methods do indeed work as
+// expected: add some accounts, show the total balance, make some deposits and withdrawals, show the new total balance.
+
+
+var bank = {
+  account: [
+    {name: 'Rich Bastard', balance: 1200000},
+    {name: 'Poor AsHell', balance: 30},
+    {name: 'Petr Subotnik', balance: 1}
+  ],
+
+  addAccount: function(clientName,newBalance){
+    var newAccount = {name: clientName, balance: newBalance};
+    this.account.push(newAccount);
+  },
+
+  totalBalanceInBank: function() {
+    var totalBalance = 0;
+    for (var i = 0; i < bank.account.length; i++) {
+      var account = bank.account[i];
+      totalBalance += account.balance;
+    }
+    return totalBalance;
+  },
+
+  depositMoney: function( clientName, depositAmount ){
+    for (var i = 0; i < bank.account.length; i++) {
+      var account = bank.account[i];
+      if (account.name === clientName) {
+        account.balance += depositAmount;
+        console.log("new account balance of" + account.name + ' is $' + account.balance);
+        return account.balance;
+      }
+    }
+  }, // end depositMoney()
+
+  withdrawMoney: function( clientName, withdrawAmount ){
+    for (var i = 0; i < bank.account.length; i++) {
+      var account = bank.account[i];
+      if (account.name === clientName) {
+        if (account.balance < withdrawAmount) {
+          console.log('You dont have enough money in your account');
+        } else {
+          account.balance -= withdrawAmount;
+          console.log('The remaining balance of' + account.name + ' is $' +account.balance);
+          return account.balance;
+        }
+      }
+    }
+  },
+
+  transferMoney: function (clientName1, clientName2, transferedAmount) {
+    for (var i = 0; i < bank.account.length; i++) {
+      var account = bank.account[i];
+      if (account.name === clientName1 && clientName2) {
+      (account.balance.clientName1 -= transferedAmount) & (account.balance.clientName2 += transferedAmount);
+        console.log('An amount of ' + transferedAmount + ' has been transfered from ' + clientName1 + ' to ' + clientName2);
+        return console.log(account.balance.clientName1, account.balance.clientName2);
+      }
+    }
+  }
+};
+
+console.log( 'The total balance in the bank is: $' + bank.totalBalanceInBank() );
