@@ -35,17 +35,17 @@ var guessLetter = function(letter){
 
     console.log('You guessed the letter ' + letter + ' correctly!')
 
-    // }else{
-    //
-    // console.log('Sorry, but ' + letter + ' is incorrect.');
-    //
-    // }
-  // for(var j = 0; j <guesses.length; j++){
+    }else{
 
-    // if (guesses == word){
-    //
-    // console.log( 'Congratulations. You Won!')
-    // }
+    console.log('Sorry, but ' + letter + ' is incorrect.');
+
+    }
+    for(var j = 0; j <guesses.length; j++){
+
+      if (guesses[i].tostring() === word[i].tostring()){
+
+      console.log( 'Congratulations. You Won!')
+     }
     }
   }
 }
