@@ -14,7 +14,7 @@ var subway = {
 };
 
 // Return index (location) of single stop from database
-var getIndex = function(fromStop, toStop, line) { // arguements: string, string, array
+var getIndexes = function(fromStop, toStop, line) { // arguements: string, string, array
   var index = {
     fromIndex: line.indexOf(fromStop),
     toIndex: line.indexOf(toStop),
@@ -23,7 +23,7 @@ var getIndex = function(fromStop, toStop, line) { // arguements: string, string,
 }
 
 // Return distance and direction from A to B on single line
-var getDistance = function(index) {
+var getTripData = function(index) {
   var tripProperties = { // Initialize as going forward
     distance: index.toIndex - index.fromIndex,
     reverse:0
@@ -62,8 +62,8 @@ var printCrossLine = function(lines, sections, distance) {
 }
 
 // Printer chooser
-var printResult = function(crossLine, lines, sections, distance) {
-  if (!crossLine) {
+var printResult = function(isCrossLine, lines, sections, distance) {
+  if (!isCrossLine) {
     printSingleLine(lines, sections, distance);
   } else {
     printCrossLine(lines, sections, distance);
@@ -72,26 +72,26 @@ var printResult = function(crossLine, lines, sections, distance) {
 
 // ****** Real trip planners
 var planTripSingle = function(fromLine, fromStop, toLine, toStop) {
-  var index = getIndex(fromStop, toStop, subway[fromLine]); // Do it this way, so I can use index for getDistance() and getSection()
-  var tripData = getDistance(index); // Get distance from fromStop to toStop
+  var index = getIndexes(fromStop, toStop, subway[fromLine]); // Do it this way, so I can use index for getTripData() and getSection()
+  var tripData = getTripData(index); // Get distance from fromStop to toStop
   var section = getSection(index, subway[fromLine], tripData.reverse);// Get section for printResult()
 
-  printResult(0, fromLine, section, tripData.distance);
+  printResult(false, fromLine, section, tripData.distance);
 }
 
 var planTripCross = function(fromLine, fromStop, toLine, toStop) {
   // First section
-  var index = getIndex(fromStop, 'Union Square', subway[fromLine]); // Do it this way, so I can use index for getDistance() and getSection()
-  var fromTripData = getDistance(index); // Get distance from fromStop to toStop
-  var fromSection = getSection(index, subway[fromLine], fromTripData.reverse);// Get section for printResult()
+  var index = getIndexes(fromStop, 'Union Square', subway[fromLine]);
+  var fromTripData = getTripData(index);
+  var fromSection = getSection(index, subway[fromLine], fromTripData.reverse);
   // Second section
-  index = getIndex('Union Square', toStop, subway[toLine]); // Do it this way, so I can use index for getDistance() and getSection()
-  var toTripData = getDistance(index); // Get distance from fromStop to toStop
-  var toSection = getSection(index, subway[toLine], toTripData.reverse);// Get section for printResult()
+  index = getIndexes('Union Square', toStop, subway[toLine]);
+  var toTripData = getTripData(index);
+  var toSection = getSection(index, subway[toLine], toTripData.reverse);
 
   var distance = fromTripData.distance + toTripData.distance;
 
-  printResult(1, [fromLine, toLine], [fromSection, toSection], distance);
+  printResult(true, [fromLine, toLine], [fromSection, toSection], distance);
 }
 
 // ********** Main function
