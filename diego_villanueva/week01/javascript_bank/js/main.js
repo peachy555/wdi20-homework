@@ -26,7 +26,7 @@
 // Ensure that the accounts cannot have negative values.
 // Write a 'transfer' on the bank that allows you to transfer amounts between two accounts.
 
-bank = {
+var bank = {
   accounts:[
     {name: 'John Smith', accBalance: 300},
     {name: 'Mary Taylor', accBalance: 78340592},
@@ -44,7 +44,7 @@ bank = {
   deposit: function(client, amount){
     for (i=0; i<bank.accounts.length; i++){
       if (bank.accounts[i].name === client){
-        bank.accounts[i].accBalance = bank.accounts[i].accBalance + amount;
+        bank.accounts[i].accBalance += amount;
         console.log('The new account balance of '+bank.accounts[i].name+' is $'+bank.accounts[i].accBalance);
         break;
       }
