@@ -41,10 +41,10 @@ var bankAccounts = [
 ];
 
 // Total sum of money
-var totalSum = function (bankAccounts) {
+var totalSum = function (accounts) {
   var total = 0;
-  for (var i = 0; i < bankAccounts.length; i++) {
-    total += bankAccounts[i].balance;
+  for (var i = 0; i < accounts.length; i++) {
+    total += accounts[i].balance;
   }
   console.log(total);
 };
