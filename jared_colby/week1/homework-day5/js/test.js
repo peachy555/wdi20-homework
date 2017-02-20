@@ -4,40 +4,136 @@ var mta = {
   "6": [ "Grand Central","33rd","28th","23rd","Union Square","Astor Place"]
 }
 
-// var planTrip = function(trainLine1, startStation,trainLine2,stopStation){
-// var planTrip = function( startLine, startStation, endLine, endStation ){
 
-// planTrip('N', 'Times Square', '6', '33rd');
+var MultiLineTrip = function( startLine, startStation, endLine,endStation ){
+  var singleLine = mta[startLine];
+    if (startLine === endLine){
 
 
-//                             'N' , 'Times Square', '8th'
-var singleLineTrip = function( line, startStation, endStation ){
-   var stations = mta[line];
-   var startIndex = stations.indexOf(startStation);
-   var endIndex = stations.indexOf(endStation);
-   var stationStops = mta[line].slice(startIndex,endIndex+1);
-  //    if (startIndex > endIndex){
-  //        stations = mta[line].reverse();
-  //        startIndex = stations.indexOf(startStation);
-  //        endIndex = stations.indexOf(endStation);
-  //        stationStops = mta[line].slice(startIndex,endIndex+1);
-   //
-  //  }
-   console.log(stationStops);
+      var startIndex = singleLine.indexOf(startStation);
+      var endIndex = singleLine.indexOf(endStation);
+      var stationStops = mta[startLine].slice(startIndex,endIndex+1);
+        if (startIndex > endIndex){
+
+          var stationsPartOne = mta[startLine].reverse();
+              startIndex = singleLine.indexOf(startStation);
+              endIndex = singeLine.indexOf(endStation);
+              stationStops = mta[startLine].slice(startIndex,endIndex+1);
+
+        }
+           console.log('You must travel through the following stops on the '+ startLine + ' Line : '+ stationStops.toString()+ '. ');
+            console.log((stationStops.length-1 )+ ' stops in total.')
+
+    }else{
+
+      var stationsPartOne = mta[startLine]
+      var startIndex = stationsPartOne.indexOf(startStation);
+      var endIndex = stationsPartOne.indexOf("Union Square");
+      var firstStops = mta[startLine].slice(startIndex,endIndex+1);
+
+      var stationsPartTwo = mta[endLine];
+      var secondStartIndex = stationsPartTwo.indexOf("Union Square");
+      var secondEndIndex = stationsPartTwo.indexOf(endStation);
+      var secondStops = mta[endLine].slice(secondStartIndex,secondEndIndex);
+
+      if (startIndex > endIndex) {
+         stationsPartOne = mta[startLine].reverse();
+         startIndex = stationsPartOne.indexOf(startStation);
+         endIndex = stationsPartOne.indexOf("Union Square");
+         firstStops = mta[startLine].slice(startIndex,endIndex);
+
+         stationsPartTwo = mta[endLine].reverse();
+         secondStartIndex = stationsPartTwo.indexOf("Union Square");
+         secondEndIndex = stationsPartTwo.indexOf(endStation);
+         secondStops = mta[endLine].slice(secondStartIndex,secondEndIndex+1);
+
+        var allStops = firstStops.concat(secondStops);
+      }
+
+
+
+
+      console.log (allStops);
+      console.log('You must travel through the following stops on the '+ startLine + ' Line : '+ firstStops.toString()+ '. ');
+      console.log('Change trains at "Union Square". ')
+      console.log('You must then travel through the following stops on the '+ endLine + ' Line : '+ secondStops.toString()+ '. ');
+      console.log((allStops.length)+ ' stops in total.')
+
+    }
+
 };
-singleLineTrip('N', "34th", "8th");
-// var singleLineTrip = function( line, startStation, endStation ){
-//    var stations = mta[line];
-//    var startIndex = stations.indexOf(startStation);
-//    var endIndex = stations.indexOf(endStation);
-//    var stationStops = mta[line].slice(startIndex,endIndex+1);
-//    if (startIndex > endIndex){
+  // singleLineTrip('N', "Times Square", "N", "8th");
+MultiLineTrip('N', "Times Square", "N", "8th");
+MultiLineTrip('L', "1st", "N", "Times Square");
+MultiLineTrip('N', "Times Square", "L", "1st");
+
+
+
+
+// Version 2
+
+// var mta = {
+//   "N": ["Times Square","34th","28th","23rd","Union Square","8th"],
+//   "L": ["8th","6th","Union Square","3rd","1st"],
+//   "6": [ "Grand Central","33rd","28th","23rd","Union Square","Astor Place"]
+// }
 //
-//          stations = mta[line].reverse();
-//          startIndex = stations.indexOf(startStation);
-//          endIndex = stations.indexOf(endStation);
-//          stationStops = mta[line].slice(startIndex,endIndex+1);
 //
-//    }
-//    console.log(stationStops);
+// var MultiLineTrip = function( startLine, startStation, endLine,endStation ){
+//   var singleLine = mta[startLine];
+//
+//     if (startLine === endLine){
+//       var tripIndex= (singleLine.indexOf(startStation)&& singleLine.indexOf(endStation));
+//       var stationStops = mta[startLine].slice(tripIndex+1);
+//         if (startIndex > endIndex){
+//
+//           var stationsPartOne = mta[startLine].reverse();
+//               tripIndex= (singleLine.indexOf(startStation)&& singleLine.indexOf(endStation));
+//               stationStops = mta[startLine].slice(tripIndex+1);
+//
+//         }
+//            console.log('You must travel through the following stops on the '+ startLine + ' Line : '+ stationStops.toString()+ '. ');
+//             console.log((stationStops.length )+ ' stops in total.')
+//
+//     }else{
+//
+//       var stationsPartOne = mta[startLine]
+//       var startIndex = stationsPartOne.indexOf(startStation);
+//       var endIndex = stationsPartOne.indexOf("Union Square");
+//       var firstStops = mta[startLine].slice(startIndex,endIndex+1);
+//
+//       var stationsPartTwo = mta[endLine];
+//       var secondStartIndex = stationsPartTwo.indexOf("Union Square");
+//       var secondEndIndex = stationsPartTwo.indexOf(endStation);
+//       var secondStops = mta[endLine].slice(secondStartIndex,secondEndIndex);
+//
+//       if (startIndex > endIndex) {
+//          stationsPartOne = mta[startLine].reverse();
+//          startIndex = stationsPartOne.indexOf(startStation);
+//          endIndex = stationsPartOne.indexOf("Union Square");
+//          firstStops = mta[startLine].slice(startIndex,endIndex);
+//
+//          stationsPartTwo = mta[endLine].reverse();
+//          secondStartIndex = stationsPartTwo.indexOf("Union Square");
+//          secondEndIndex = stationsPartTwo.indexOf(endStation);
+//          secondStops = mta[endLine].slice(secondStartIndex,secondEndIndex+1);
+//
+//         var allStops = firstStops.concat(secondStops);
+//       }
+//
+//
+//
+//
+//       console.log (allStops);
+//       console.log('You must travel through the following stops on the '+ startLine + ' Line : '+ firstStops.toString()+ '. ');
+//       console.log('Change trains at "Union Square". ')
+//       console.log('You must then travel through the following stops on the '+ endLine + ' Line : '+ secondStops.toString()+ '. ');
+//       console.log((allStops.length)+ ' stops in total.')
+//
+//     }
+//
 // };
+//   // singleLineTrip('N', "Times Square", "N", "8th");
+// MultiLineTrip('N', "Times Square", "N", "8th");
+// MultiLineTrip('L', "1st", "N", "Times Square");
+// MultiLineTrip('N', "Times Square", "L", "1st");
