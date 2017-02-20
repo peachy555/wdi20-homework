@@ -36,46 +36,42 @@ var mta = {
     var printTrip = function (trip) {
       var tripList = '';
       for (var i = 0; i < trip.length; i++){
-      tripList += trip[i];
+        tripList += trip[i];
         if (i < trip.length - 1){
           tripList += ', ';
-      } else {
-        tripList += '.';
-      }
-    } return tripList;
-  };
-     //for same line trip - note. need to work out same stop result eg 6th to 6th
-      if  (startLine === endLine) {
-        if (startIndex < endIndex) {
-          var trip = sameLineTrip(startIndex, endIndex);
-
         } else {
-          var trip = reverseTrip(startIndex, endIndex);
-
+          tripList += '.';
         }
-        return 'You must travel through the following stops on the ' + startLine + ' line: ' + printTrip(trip) + ' ' + trip.length + ' stops in total.';
-
+      } return tripList;
+    };
+    //for same line trip - note. need to work out same stop result eg 6th to 6th
+    if  (startLine === endLine) {
+      if (startIndex < endIndex) {
+        var trip = sameLineTrip(startIndex, endIndex);
       }
-       //for change line trip
-       else {
-        if (startIndex < startLineUnionSqIndex) {
-            var tripPart1 = sameLineTrip (startIndex, startLineUnionSqIndex);
 
-            var tripPart2 = endIndex < endLineUnionSqIndex ? reverseTrip2 (endLineUnionSqIndex, endIndex) : sameLineTrip2 (endLineUnionSqIndex, endIndex); // replacing if/else statement with true/false ?
+      else {
+        var trip = reverseTrip(startIndex, endIndex);
+        }
 
-            var trip = tripPart1.concat(tripPart2);
+        return 'You must travel through the following stops on the ' + startLine + ' line: ' + printTrip(trip) + ' ' + trip.length + ' stops in total.';
+    }
+    //for change line trip
+    else {
+      if (startIndex < startLineUnionSqIndex) {
+        var tripPart1 = sameLineTrip (startIndex, startLineUnionSqIndex);
+        var tripPart2 = endIndex < endLineUnionSqIndex ? reverseTrip2 (endLineUnionSqIndex, endIndex) : sameLineTrip2 (endLineUnionSqIndex, endIndex); // replacing if/else statement with true/false ?
+        var trip = tripPart1.concat(tripPart2);
+      }
 
-        } else {
-            var tripPart1 = reverseTrip (startIndex, startLineUnionSqIndex);
-
-            var tripPart2 = endIndex < endLineUnionSqIndex ? reverseTrip2 (endLineUnionSqIndex, endIndex) : sameLineTrip2 (
-            endLineUnionSqIndex, (endIndex+ 1));
-
-            var trip = tripPart1.concat(tripPart2);
-       }
+      else {
+        var tripPart1 = reverseTrip (startIndex, startLineUnionSqIndex);
+        var tripPart2 = endIndex < endLineUnionSqIndex ? reverseTrip2 (endLineUnionSqIndex, endIndex) : sameLineTrip2 (
+        endLineUnionSqIndex, (endIndex+ 1));
+        var trip = tripPart1.concat(tripPart2);
+      }
     }
       return 'You must travel through the following stops on the ' + startLine + ' line: ' + printTrip(tripPart1) + ' Change at Union Square. Your journey continues on the ' + endLine + ' line through the following stops: ' + printTrip(tripPart2) + ' '  + trip.length + ' stops in total.';
-
   }
 };
 //test results
