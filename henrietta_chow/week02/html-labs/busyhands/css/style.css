@@ -1,5 +1,10 @@
+* {
+  margin:0;
+  padding:0;
+}
+
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: sans-serif;
   background-color: #EDEFED;
   margin: 0px;
   padding: 0px;
@@ -37,19 +42,31 @@ nav a:link {
 
 .photobanner, .imageshadow {
   text-align: center;
-  padding: 0px 20px 0px 80px;
+  width: 960px;
+  padding: 0px;
+  margin: 0px 20px 0px 80px;
 }
 
+.imageshadow {
+  position: relative;
+  top: -5px;
+}
+
+/*position: relative ? to change background*/
 .container {
-  border: 1px solid gray;
+  border-left: 1px solid #808080;
+  border-top: 1px solid #808080;
+  border-right: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
   width: 960px;
-  margin: 0px 20px 0px 180px;
+  margin: 0px 0px 0px 80px;
   padding: 10px;
 }
 
 #blurb{
-  width: 600px;
+  width: 70%;
   display: inline-block;
+  padding: 0px 15px;
 
 }
 #button {
@@ -59,24 +76,43 @@ nav a:link {
 button {
   border-radius: 10px;
   color: #FFFFFF;
-  padding: 8px 30px;
+  padding: 3px 50px;
+  text-shadow: 1px 1px 2px gray;
   border: none;
   text-decoration: none;
-  background: #0000FF;
-  background: -webkit-linear-gradient(bottom, #0000FF, #00FFFF);
-  background: -o-linear-gradient(bottom, #0000FF, #00FFFF);
-  background: -moz-linear-gradient(bottom, #0000FF, #00FFFF);
-  background: linear-gradient(bottom, #0000FF, #00FFFF);
+  background: #000FFF;
+  background: -webkit-linear-gradient(bottom, #000FFF, #0FFFFF);
+  background: -o-linear-gradient(bottom, #000FFF, #0FFFFF);
+  background: -moz-linear-gradient(bottom, #000FFF, #0FFFFF);
+  background: linear-gradient(bottom, #000FFF, #0FFFFF);
 }
 
-#home-boxes .home-boxes {
-  display: inline;
-  width: 200px;
+button h2 {
+  line-height: 90%;
+  font-weight: normal;
+  /*font-size: */
 }
 
-.home-boxes img {
-  box-shadow: 10px 10px 5px #808080;
+button p {
+  line-height: 20%;
+}
 
+#home-boxes {
+  width: 960px;
+  margin: 0px 0px 0px 80px;
+
+}
+
+.home-box {
+  display: inline-block;
+  width: 30%;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+}
+
+.home-box img {
+  padding: 1px;
+  border: 5px solid #D3D3D3;
 }
 
 footer {
