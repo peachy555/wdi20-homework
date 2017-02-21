@@ -20,38 +20,38 @@ var guessLetter = function (letter) {
   var rightGuess = false;
   var needMoreGuesses = false;
 
-  for(var i = 0; i < word.length; i++){
+  // for(element in word) {
+  //   console.log(element); --> will produce each value in the array - ONLY works on arrays
+  // }
+  // loop over an array -->
+  // word.forEach(function(ltr) {
+  //    console.log(ltr)
+  //  }
+  //);
+})
+
+  for(i in word) { // same as this --> for(var i = 0; i < word.length; i++){
     if(letter === word[i]) {
       guesses[i] = letter;
       rightGuess = true;
     }
-    if(guesses[i] = '_') {
+    if(guesses[i] === '_') {
       needMoreGuesses = true;
-   }
-
- if (rightGuess === true && needMoreGuesses === true) {
+    }
+  }
+  if (rightGuess === true && needMoreGuesses === true) {
    console.log('Congratulations! You guessed the letter ' + letter + ' correctly!');
- } else if (rightGuess === false) {
+  } else if (rightGuess === false) {
     console.log('Sorry, the letter ' + letter + ' is not in the word.');
   } else if (needMoreGuesses === false) {
     console.log('Congratulations, you won!');
   }
-}
-}
+};
 
 
 
 
 
-// var guessWord = function(){
-//
-// }
-//     var i = guess.indexOf(letter);
-//     guess[i] = letter;
-//       console.log(guess[i]);
-//     }
-// }
-//
 
 // var guessWord
 // guess[i] = letter
