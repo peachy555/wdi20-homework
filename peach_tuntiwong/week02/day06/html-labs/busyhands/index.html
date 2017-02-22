@@ -15,22 +15,46 @@
 <body>
 	<div id="wrapper">
     <header>
-      <nav class="container">
-        <div class="home-box">Home</div>
-        <div class="home-box">About</div>
-        <div class="home-box">Services</div>
-        <div class="home-box">Blog</div>
-        <div class="home-box">Contact Us</div>
+      <nav>
+        <div>Home</div>
+        <div>About</div>
+        <div>Services</div>
+        <div>Blog</div>
+        <div>Contact Us</div>
       </nav>
     </header>
 
-    <img class="container" id="logo" src="images/logo.png" alt="logo">
-    <img class="container" id="banner" src="images/photobanner.png" alt="">
-
     <div class="container">
-      <img id="blurb" src="images/button_blurb.png" alt="blurb">
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco seddo eiusmod tempor indididunt ut labore et dolore magna aliqua.</p>
+      <img id="logo" src="images/logo.png" alt="logo">
+      <img id="banner" src="images/photobanner.png" alt="banner">
+      <img id="shadow" src="images/shadow_slider.png" alt="shadow">
     </div>
+
+    <div id="blurb" class="container">
+      <p><img src="images/button_blurb.png" alt="blurb">Ut enim ad minim veniam, quis nostrud exercitation ullamco seddo eiusmod tempor indididunt ut labore et dolore magna aliqua.</p>
+    </div>
+
+    <div id="home-boxes">
+      <div class="home-box">
+        <h2>Home Box 1</h2>
+        <img src="images/photo_column1.jpg" alt="Home-box-image1">
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <a href="#">Read more &raquo</a>
+      </div>
+      <div class="home-box">
+        <h2>Home Box 2</h2>
+        <img src="images/photo_column2.jpg" alt="Home-box-image2">
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <a href="#">Read more &raquo</a>
+      </div>
+      <div class="home-box">
+        <h2>Home Box 3</h2>
+        <img src="images/photo_column3.jpg" alt="Home-box-image3">
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+        <a href="#">Read more &raquo</a>
+      </div>
+    </div>
+
     <footer>
       <div class="container">
         <div class="box-footer">
@@ -48,15 +72,14 @@
         </div>
         <div class="box-footer">
           <div class="metawidget"><h3>Meta Widget</h3></div>
-          <div class="metawidgit">Log in</div>
-          <div class="metawidgit">Entries RSS</div>
-          <div class="metawidgit">Comments RSS</div>
-          <div class="metawidgit">WordPress.org</div>
-          <div></div>
+          <div class="metawidget">Log in</div>
+          <div class="metawidget">Entries RSS</div>
+          <div class="metawidget">Comments RSS</div>
+          <div class="metawidget">WordPress.org</div>
         </div>
-        <div>
-          <p id="copyright">Copyright 2010 Busy Hands.</p>
-          <p id="companybottom">Theme brought to you by <p id="name">Good Friends!</p></p>
+        <div id="copyright">
+          <p>Copyright 2010 Busy Hands.</p>
+          <p>Theme brought to you by <span id="companybottom">Good Friends!</span></p>
         </div>
       </div>
     </footer>
