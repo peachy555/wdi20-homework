@@ -1,0 +1,104 @@
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #EDEFED;
+  margin: 0px;
+  padding: 0px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  background-color: #000000;
+  height: 80px;
+}
+
+nav li {
+  display: inline-block;
+  padding: 30px 10px 30px 60px;
+  margin: 0px;
+}
+
+nav a:link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#logo {
+  float: left;
+  margin: 20px 20px 20px 80px;
+}
+
+#social-media {
+  float: right;
+  margin: 0px 20px 20px 20px;
+}
+
+.photobanner, .imageshadow {
+  text-align: center;
+  padding: 0px 20px 0px 80px;
+}
+
+.container {
+  border: 1px solid gray;
+  width: 960px;
+  margin: 0px 20px 0px 180px;
+  padding: 10px;
+}
+
+#blurb{
+  width: 600px;
+  display: inline-block;
+
+}
+#button {
+  float: right;
+}
+
+button {
+  border-radius: 10px;
+  color: #FFFFFF;
+  padding: 8px 30px;
+  border: none;
+  text-decoration: none;
+  background: #0000FF;
+  background: -webkit-linear-gradient(bottom, #0000FF, #00FFFF);
+  background: -o-linear-gradient(bottom, #0000FF, #00FFFF);
+  background: -moz-linear-gradient(bottom, #0000FF, #00FFFF);
+  background: linear-gradient(bottom, #0000FF, #00FFFF);
+}
+
+#home-boxes .home-boxes {
+  display: inline;
+  width: 200px;
+}
+
+.home-boxes img {
+  box-shadow: 10px 10px 5px #808080;
+
+}
+
+footer {
+  background-color: #000000;
+  color: #808080;
+  height: 250px;
+}
+
+.box-footer {
+  width: 960px;
+}
+
+.box-footer:first-of-type {
+    display: block;
+    margin-top: 50px;
+ }
+
+.box-footer .blogroll ul {
+  /*display: none;*/
+}
+
+.box-footer .blogroll li {
+  display: inline-block;
+  margin: 0px 5px;
+}
