@@ -1,0 +1,162 @@
+* {
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #D3D3D3;
+}
+
+a:link {
+  text-decoration: none;
+  color: red;
+}
+
+nav {
+  background-color:rgba(255, 0, 0, 0.8);
+  height: 80px;
+
+}
+
+nav li {
+  display: inline-block;;
+  padding: 25px;
+  font-size: 20px;
+  margin-left: 50px;
+
+}
+
+li a:link {
+  text-decoration: none;
+  color: white;
+}
+
+#top-container {
+  background-image: url("https://c1.staticflickr.com/3/2108/2393323487_63c8e54dcc_o.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Bahiana', cursive;
+  font-size: 4.5em;
+  letter-spacing: 5px;
+  color: #000000;
+}
+
+#top-container h1 {
+  text-align: center;
+  padding-top:400px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 5px #000000;
+}
+
+#bio-top-container {
+  background-image: url("https://travel.gaijinpot.com/wp-content/uploads/sites/6/2016/02/Osaka.jpg ");
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  margin: 0 auto;
+}
+
+
+button {
+  background-color: rgba(255, 0, 0, 0);
+  border: 2px solid red;
+  font-size: 1.5em;
+  padding: 10px 40px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px #000000;
+  text-transform: uppercase;
+  text-align: center;
+  margin-left: 40%;
+}
+
+button:hover {
+  background-color: red;
+}
+
+h2 {
+  /*font-family: 'VT323', monospace;*/
+  font-family: 'Bahiana', cursive;
+  font-size: 3em;
+  letter-spacing: 5px;
+}
+
+#main-content {
+  width: 1080px;
+  height: 320px;
+  margin: 0 auto;
+}
+
+#main-content h2 {
+  line-height: 1.5em;
+}
+
+.column {
+  width: 30%;
+  display: inline-block;
+  padding: 10px;
+  margin: 35px 5px;
+}
+
+.fa-id-card, .fa-globe, .fa-question, .fa-user, .fa-child, .fa-code-fork, .fa-home, .fa-exclamation-circle, .fa-info {
+  color: rgb(255,0,0);
+  text-align: center;
+}
+
+.icon {
+  text-align: center;
+}
+
+#secondary-content {
+  background-color: red;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.container {
+  height: 300px;
+  width: 1080px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.container img {
+  border-radius: 25px;
+  float: left;
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+}
+
+.container #quote {
+  width: 65%;
+  display:inline-block;
+  margin: 15px;
+  font-size: 1.8em;
+  font-style: italic;
+}
+footer {
+  height: 40px;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.footer-block {
+  width: 1080px;
+  margin: auto;
+  padding: 15px;
+  color: #808080;
+}
+
+.footer-block #builtwith {
+  float:right;
+  padding-right: 20px;
+}
