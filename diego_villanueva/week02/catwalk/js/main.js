@@ -2,7 +2,7 @@ window.onload = function(){
 
   var cat = document.getElementsByTagName("img")[0];
 
-  var returnPoint = window.innerWidth;
+
   var position = 0 ; //where the cat starts walking on the left side
   var positionBack = 0 ;
 
@@ -13,7 +13,7 @@ window.onload = function(){
     cat.style.left = position +'px';
     position +=10;
 
-    if (position === window.innerWidth-100) {
+    if (position > window.innerWidth-100) {
         // alert('go back');
         window.clearInterval( walkingRight );
         cat.style.transform ="scaleX(-1)";
@@ -23,7 +23,7 @@ window.onload = function(){
 
 var walkingRight = window.setInterval(walkRight, 10);
 
-// works ///   both sides ////
+//both sides ////
 
 var walkLeft = function () {
   position -= 10;
@@ -31,12 +31,12 @@ var walkLeft = function () {
   if (position === 100) {
       // alert('go back');
       window.clearInterval( leftID );
-      cat.style.transform ="scaleX(-1)";
-      window.setInterval(walkRight, 10);
+      cat.style.transform ="scaleX(+1)";
+      walkingRight = window.setInterval(walkRight, 10);
   }
 };
 
-
+//
 
   // cat.style.transform ="scaleX(-1)";
   // var walkingLeft = window.setInterval(walkLeft, 10);
