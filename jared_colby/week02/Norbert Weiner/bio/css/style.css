@@ -2,15 +2,10 @@
 body {
   background-color: grey;
   font-family: 'Slabo 27px', serif;
-
-
-
 }
 
 header {
   background-color: white
-
-
 }
 
 a {
@@ -19,8 +14,6 @@ a {
   text-decoration: none;
 }
 
-
-}
 nav {
   display: inline-block;
 }
@@ -32,8 +25,6 @@ h1 {
 div {
   height: 100px;
   width: 25%;
-
-
 
 }
 .column{
