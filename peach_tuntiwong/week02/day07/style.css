@@ -22,6 +22,10 @@ div.footer a.item {
   color:white;
 }
 
+#hometown-div {
+  background-image: url('https://wallpaperscraft.com/image/new_york_manhattan_panorama_river_bridge_58415_3840x1200.jpg');
+}
+
 div#index {
   background-color: purple!important;
 }
