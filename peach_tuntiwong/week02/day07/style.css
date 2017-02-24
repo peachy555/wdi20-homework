@@ -3,7 +3,7 @@ p {
   font-family: Oswald;
 }
 
-h3 {
+h2, h3 {
   font-family: Lobster!important;
 }
 
@@ -24,6 +24,15 @@ div.footer a.item {
 
 #hometown-div {
   background-image: url('https://wallpaperscraft.com/image/new_york_manhattan_panorama_river_bridge_58415_3840x1200.jpg');
+  background-size: contain;
+}
+
+#hometown-div p {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#hometown-div p:hover {
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 div#index {
