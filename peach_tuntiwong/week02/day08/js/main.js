@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+  var $interupt = $(".interupt");
+  $interupt.hide();
   var $catImg = $("#cat");
   var catPos = 0; //current desired position of image
   var timeInterval = 5; //set cat speed
@@ -28,7 +29,7 @@ $(document).ready(function(){
   }
 
   var isMidWay = function() {
-    if (catPos == Math.floor((window.innerWidth-$catImg.width())/2)) {
+    if (catPos === Math.floor((window.innerWidth-$catImg.width())/2)) {
       return true;
     }
   }
@@ -36,25 +37,36 @@ $(document).ready(function(){
 
   var runInterupt = function() {
     // Now blank page
+    // clearInterval(catInterupt);
+    var interuptCounter = 0;
     var catInterupt = setInterval(function() {
-
-
+      console.log(interuptCounter);
+      if (interuptCounter > 1) {
+        clearInterval(catInterupt);
+      }
+      console.log("runInterupt");
+      $interupt.show();
+      interuptCounter++;
     }, interuptInterval);
     // end of interupt
-    hideInterupt();
+    backToCat();
   }
-
-  var hideInterupt = function () {
-
-  }
-
 
   var backToCat = function() {
-    // Now blank page
-
+    $interupt.hide();
+    // Now blank page\
+    console.log("backToCat");
+    if (isForward === 1) {
+      catPos = Math.floor((window.innerWidth-$catImg.width())/2) + 1;
+    } else {
+      catPos = Math.floor((window.innerWidth-$catImg.width())/2) - 1;
+    }
+    $catImg.show();
+    catWalk();
   }
 
   var catWalk = function() {
+    // clearInterval(catInterval);
     var catInterval = setInterval(function() {
 
       //check position
@@ -62,7 +74,6 @@ $(document).ready(function(){
         clearInterval(catInterval);
         $catImg.hide();
         runInterupt();
-        backToCat();
       }
 
 

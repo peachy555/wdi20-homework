@@ -6,50 +6,37 @@ $(document).ready(function(){
     savings: 0
   };
 
-  var isCheckingEmpty = function() {
-    if (balance.checking === 0) {
-      $('#checking-balance').css('background-color', 'red');
-    } else if (balance.checking !== 0) {
-      $('#checking-balance').css('background-color', '#E3E3E3');
-    }
-  }
-
-  var isSavingsEmpty = function() {
-    if (balance.savings === 0) {
-      $('#savings-balance').css('background-color', 'red');
+  var isEmpty = function(acount) {
+    if (balance[acount] === 0) {
+      $('#' + acount + '-balance').css('background-color', 'red');
     } else {
-      $('#savings-balance').css('background-color', '#E3E3E3');
+      $('#' + acount + '-balance').css('background-color', '#E3E3E3');
     }
   }
 
-  isCheckingEmpty();
-  isSavingsEmpty();
+  isEmpty('savings');
+  isEmpty('checking');
 
   var balanceUpdate = function(amount, account) {
-
-    if (account === 'checking') {
-      balance.checking += amount;
-      $("#checking-balance").html('$'+balance.checking);
-      isCheckingEmpty();
-    } else if (account === 'savings') {
-      balance.savings += amount;
-      $("#savings-balance").html('$'+balance.savings);
-      isSavingsEmpty();
-    } else {
-      console.log("Error balanceUpdate()");
-    }
+    balance[account] += amount;
+    $("#" + account +"-balance").html('$'+balance[account]);
+    isEmpty(account);
   }
 
   var withdraw = function(currentAcc) {
     var account = getAccountName(currentAcc);
     var withdrawAmount = parseInt($("#" + account.current + "-amount").val());
     if (balance[account.current] >= withdrawAmount) {
-      console.log('first condition');
-      balanceUpdate(-withdrawAmount, account.current)
-    } else if ((balance[account.current] + balance[account.backup]) >= withdrawAmount) {
-      console.log('second condition');
-      balanceUpdate(-(withdrawAmount - balance[account.current]), account.backup);
-      balanceUpdate(-balance[account.current], account.current);
+      balanceUpdate(-withdrawAmount, account.current);
+    } else if (account.current === 'checking') {
+      if ((balance[account.current] + balance[account.backup]) >= withdrawAmount) {
+        balanceUpdate(-(withdrawAmount - balance[account.current]), account.backup);
+        balanceUpdate(-balance[account.current], account.current);
+      } else {
+        alert("Insuficient fund");
+      }
+    } else {
+      alert("Insuficient fund");
     }
   }
 
@@ -65,7 +52,6 @@ $(document).ready(function(){
     }
     return account;
   }
-
 
   // Checking Deposit
   $(document).on("click", "#checking-deposit", function() {
