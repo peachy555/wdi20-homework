@@ -1,11 +1,12 @@
 $(document).ready(function(){
 
   $body = $('body');
-  $body.css ({
-    background: 'yellow'
-  });
+  $body.css ("background-image", "url(images/background.jpg)");
 
-  $cat = $('img');
+  $cat = $('img#cat');
+  $xandcat = $('img#xandcat');
+  $cat.css ("top", "450px");
+  $xandcat.css ("top","450px")
 
   var moveRight = function () {
     var x = parseInt($cat.css('left'));
@@ -15,7 +16,10 @@ $(document).ready(function(){
 
     if (x > window.innerWidth - 100) {
       clearInterval(intervalRight);
-      $cat.flip();
+      $cat.css ('transform', 'scaleX(-1)');
+
+      // transform: 'scaleX(' + (-1.0 + Math.random()*2.0) + ')'
+
       intervalLeft = setInterval(moveLeft, 500)
     }
   }
@@ -31,4 +35,6 @@ $(document).ready(function(){
       intervalRight = setInterval(moveRight, 500);
     }
   }
+
+
 });
