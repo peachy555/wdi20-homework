@@ -25,7 +25,6 @@ $(document).ready(function(){
   isCheckingEmpty();
   isSavingsEmpty();
 
-
   var balanceUpdate = function(amount, account) {
 
     if (account === 'checking') {
@@ -39,6 +38,32 @@ $(document).ready(function(){
     } else {
       console.log("Error balanceUpdate()");
     }
+  }
+
+  var withdraw = function(currentAcc) {
+    var account = getAccountName(currentAcc);
+    var withdrawAmount = parseInt($("#" + account.current + "-amount").val());
+    if (balance[account.current] >= withdrawAmount) {
+      console.log('first condition');
+      balanceUpdate(-withdrawAmount, account.current)
+    } else if ((balance[account.current] + balance[account.backup]) >= withdrawAmount) {
+      console.log('second condition');
+      balanceUpdate(-(withdrawAmount - balance[account.current]), account.backup);
+      balanceUpdate(-balance[account.current], account.current);
+    }
+  }
+
+  var getAccountName = function(currentAcc) {
+    var account = {
+      current: currentAcc,
+    };
+
+    if (account.current === 'savings') {
+      account.backup = 'checking';
+    } else {
+      account.backup = 'savings';
+    }
+    return account;
   }
 
 
@@ -57,32 +82,6 @@ $(document).ready(function(){
     var amount = parseInt($(inputBoxName).val());
     balanceUpdate(amount, account);
   });
-
-  var getAccountName = function(currentAcc) {
-    var account = {
-      current: currentAcc,
-    };
-
-    if (account.current === 'savings') {
-      account.backup = 'checking';
-    } else {
-      account.backup = 'savings';
-    }
-    return account;
-  }
-
-  var withdraw = function(currentAcc) {
-    var account = getAccountName(currentAcc);
-    var withdrawAmount = parseInt($("#" + account.current + "-amount").val());
-    if (balance[account.current] >= withdrawAmount) {
-      console.log('first condition');
-      balanceUpdate(-withdrawAmount, account.current)
-    } else if ((balance[account.current] + balance[account.backup]) >= withdrawAmount) {
-      console.log('second condition');
-      balanceUpdate(-(withdrawAmount - balance[account.current]), account.backup);
-      balanceUpdate(-balance[account.current], account.current);
-    }
-  }
 
   // Checking Withdraw
   $(document).on("click", "#checking-withdraw", function() {
