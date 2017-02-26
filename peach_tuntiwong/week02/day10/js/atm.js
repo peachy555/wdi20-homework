@@ -1,73 +1,99 @@
 
 $(document).ready(function(){
 
-  window.checkingBalance = 0;
-  window.savingsBalance = 0;
+  var balance = {
+    checking: 0,
+    savings: 0
+  };
 
-  var isChecking0Balance = function() {
-    if (checkingBalance === 0) {
+  var isCheckingEmpty = function() {
+    if (balance.checking === 0) {
       $('#checking-balance').css('background-color', 'red');
-    } else if (checkingBalance !== 0) {
+    } else if (balance.checking !== 0) {
       $('#checking-balance').css('background-color', '#E3E3E3');
     }
   }
 
-  var isSavings0Balance = function() {
-    if (savingsBalance === 0) {
+  var isSavingsEmpty = function() {
+    if (balance.savings === 0) {
       $('#savings-balance').css('background-color', 'red');
     } else {
       $('#savings-balance').css('background-color', '#E3E3E3');
     }
   }
 
-  isChecking0Balance();
-  isSavings0Balance();
+  isCheckingEmpty();
+  isSavingsEmpty();
 
-  var checkingBalanceUpdate = function(amount) {
-    checkingBalance += amount;
-    $("#checking-balance").html('$'+checkingBalance);
-    isChecking0Balance();
+
+  var balanceUpdate = function(amount, account) {
+
+    if (account === 'checking') {
+      balance.checking += amount;
+      $("#checking-balance").html('$'+balance.checking);
+      isCheckingEmpty();
+    } else if (account === 'savings') {
+      balance.savings += amount;
+      $("#savings-balance").html('$'+balance.savings);
+      isSavingsEmpty();
+    } else {
+      console.log("Error balanceUpdate()");
+    }
   }
 
-  var savingsBalanceUpdate = function(amount) {
-    savingsBalance += amount;
-    $("#savings-balance").html('$'+savingsBalance);
-    isSavings0Balance();
-  }
 
   // Checking Deposit
   $(document).on("click", "#checking-deposit", function() {
-    var depositAmount = parseInt($("#checking-amount").val());
-    checkingBalanceUpdate(depositAmount);
+    var account = $(this).parent().attr('id');
+    var inputBoxName = "#" + account + "-amount"
+    var amount = parseInt($(inputBoxName).val());
+    balanceUpdate(amount, account);
   });
 
   // Savings Deposit
   $(document).on("click", "#savings-deposit", function() {
-    var depositAmount = parseInt($("#savings-amount").val());
-    savingsBalanceUpdate(depositAmount);
+    var account = $(this).parent().attr('id');
+    var inputBoxName = "#" + account + "-amount"
+    var amount = parseInt($(inputBoxName).val());
+    balanceUpdate(amount, account);
   });
 
+  var getAccountName = function(currentAcc) {
+    var account = {
+      current: currentAcc,
+    };
+
+    if (account.current === 'savings') {
+      account.backup = 'checking';
+    } else {
+      account.backup = 'savings';
+    }
+    return account;
+  }
+
+  var withdraw = function(currentAcc) {
+    var account = getAccountName(currentAcc);
+    var withdrawAmount = parseInt($("#" + account.current + "-amount").val());
+    if (balance[account.current] >= withdrawAmount) {
+      console.log('first condition');
+      balanceUpdate(-withdrawAmount, account.current)
+    } else if ((balance[account.current] + balance[account.backup]) >= withdrawAmount) {
+      console.log('second condition');
+      balanceUpdate(-(withdrawAmount - balance[account.current]), account.backup);
+      balanceUpdate(-balance[account.current], account.current);
+    }
+  }
 
   // Checking Withdraw
   $(document).on("click", "#checking-withdraw", function() {
-    var withdrawAmount = parseInt($("#checking-amount").val());
-    if (checkingBalance >= withdrawAmount) {
-      checkingBalanceUpdate(-withdrawAmount)
-    } else if ((checkingBalance + savingsBalance) >= withdrawAmount) {
-      savingsBalanceUpdate(-(withdrawAmount - checkingBalance));
-      checkingBalanceUpdate(-checkingBalance);
-    }
+    var currentAcc = $(this).parent().attr('id');
+    withdraw(currentAcc);
   });
 
   // savings Withdraw
   $(document).on("click", "#savings-withdraw", function() {
-    var withdrawAmount = parseInt($("#savings-amount").val());
-    if (savingsBalance >= withdrawAmount) {
-      savingsBalanceUpdate(-withdrawAmount);
-    } else if ((checkingBalance + savingsBalance) >= withdrawAmount) {
-      checkingBalanceUpdate(-(withdrawAmount - savingsBalance));
-      savingsBalanceUpdate(-savingsBalance);
-    }
+    var currentAcc = $(this).parent().attr('id');
+    withdraw(currentAcc);
   });
 
 
