@@ -1,0 +1,21 @@
+nav{
+	background-color: black;
+}
+a{
+	background-color: black;
+	color: white;
+	padding: 35px;
+	display: block;
+	float: left;
+}
+a:hover{
+	background-color: #ee5f3c;
+}
+.clearfix:after {
+        visibility: hidden;
+        display: block;
+        content: " ";
+        clear: both;
+        height: 0;
+        font-size: 0;
+      }
