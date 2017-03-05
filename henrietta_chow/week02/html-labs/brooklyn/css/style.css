@@ -19,10 +19,13 @@ body {
   width: 960px;
 }
 
+.container img {
+  width: 960px;
+}
+
 header {
   margin: 20px 0px;
 }
-
 
 a {
   text-decoration: none;
