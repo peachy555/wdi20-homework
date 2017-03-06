@@ -17,10 +17,10 @@ while selection != 10
 
   if selection <= 5
     puts "Enter your first number:"
-    first_num = gets.chomp.to_f
+    first_num = gets.chomp.to_i
 
     puts "Enter your second number:"
-    second_num = gets.chomp.to_f
+    second_num = gets.chomp.to_i
 
   elsif selection == 6
     puts "Enter your first number:"
