@@ -61,22 +61,25 @@ until option == 8
   option = gets.chomp.to_i
 
   if option == 8
+    system('clear')
     puts "********************"
     puts "Thank you for using."
     puts "********************"
-    break
 
   elsif option < 6
+    system('clear')
     puts "Please input the first number."
     input1 = gets.chomp.to_i
     puts "Please input the second number."
     input2 = gets.chomp.to_i
 
   elsif option == 6
+    system('clear')
     puts "Please input a number."
     input3 = gets.chomp.to_i
 
   elsif option == 7
+    system('clear')
     puts "Please input the principal."
     input4 = gets.chomp.to_f
     puts "Please input the annual interest rate in decimal."
@@ -85,6 +88,7 @@ until option == 8
     input6 = gets.chomp.to_f
 
   else
+    system('clear')
     puts "********************"
     puts 'Invalid input.'
     puts "********************"
