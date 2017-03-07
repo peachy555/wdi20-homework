@@ -63,12 +63,12 @@ while selection != 10
 
   def print_result ()
     puts "*******************************"
-    puts "          Result"
+    puts "\t\tResult"
     puts "*******************************"
   end
 
   def add (first_num, second_num)
-    result = first_num + second_num
+    first_num + second_num
   end
 
   def subtract (first_num, second_num)
@@ -84,7 +84,7 @@ while selection != 10
   end
 
   def exponent (first_num, second_num)
-    result = '%.2f'%(first_num ** second_num) #used to round up / show 2 decimal places
+    result = '%.2f'%(first_num ** second_num) #used to round up / show 2 decimal places / .round
   end
 
   def sqrt (first_num)
@@ -105,7 +105,7 @@ while selection != 10
     trip_time = divide distance, speed
     req_litres = divide distance, km_litre
     trip_cost = multiply req_litres, price
-    result = trip_time, trip_cost
+    result = [trip_time, trip_cost] #a, b = trip_time, trip_cost
   end
 
   case selection
