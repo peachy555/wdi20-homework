@@ -14,6 +14,8 @@ get '/movie_listing' do
 end
 
 get '/poster_view' do
-  @img_src = params[:link]
+  movie_id = params[:id]
+  # movie_id
+  @movie_detail = HTTParty.get("http://omdbapi.com/?i=#{movie_id}")
   erb :poster_view, layout: :main_layout
 end
