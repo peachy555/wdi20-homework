@@ -6,12 +6,14 @@ get '/' do
   erb :index, layout: :main_layout
 end
 
-get '/poster_view' do
+get '/movie_listing' do
   title = params[:title]
-  search_response = HTTParty.get("http://omdbapi.com/?t=#{title}")
-  puts "*****************************************"
-  puts search_response
-  puts "*****************************************"
-  @img_src = search_response["Poster"]
+  search_response = HTTParty.get("http://omdbapi.com/?s=#{title}")
+  @search_list = search_response["Search"]
+  erb :movie_listing, layout: :main_layout
+end
+
+get '/poster_view' do
+  @img_src = params[:link]
   erb :poster_view, layout: :main_layout
 end
