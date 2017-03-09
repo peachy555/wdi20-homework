@@ -11,7 +11,7 @@ $(document).ready(function(){
   var moveRight = function () {
     var x = parseInt($cat.css('left'));
     $cat.css ({
-        left: x + 50 + 'px'
+        left: x + 30 + 'px'
       });
 
     if (x > window.innerWidth - 100) {
@@ -20,10 +20,10 @@ $(document).ready(function(){
 
       // transform: 'scaleX(' + (-1.0 + Math.random()*2.0) + ')'
 
-      intervalLeft = setInterval(moveLeft, 500)
+      intervalLeft = setInterval(moveLeft, 200)
     }
   }
-    intervalRight = setInterval(moveRight, 500);
+    intervalRight = setInterval(moveRight, 200);
 
   var moveLeft = function () {
     var x = parseInt($cat.css('left'));
