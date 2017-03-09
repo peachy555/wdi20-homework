@@ -16,23 +16,28 @@ def mainMenu
   case mode
 
   when "1"
-    puts "The answer is #{getInputs[0]+getInputs[1]}"
+    inputs = get_inputs
+    puts "The answer is #{inputs[0]+inputs[1]}"
     mainMenu
 
   when "2"
-    puts "The answer is #{getInputs[0]-getInputs[1]}"
+    inputs = get_inputs
+    puts "The answer is #{inputs[0]-inputs[1]}"
     mainMenu
 
   when "3"
-    puts "The answer is #{getInputs[0]*getInputs[1]}"
+    inputs = get_inputs
+    puts "The answer is #{inputs[0]*inputs[1]}"
     mainMenu
 
   when "4"
-    puts "The answer is #{getInputs[0]/getInputs[1]}"
+    inputs = get_inputs
+    puts "The answer is #{inputs[0]/inputs[1]}"
     mainMenu
 
   when "5"
-    puts "The answer is #{getInputs[0]**getInputs[1]}"
+    inputs = get_inputs
+    puts "The answer is #{inputs[0]**inputs[1]}"
     mainMenu
 
   when "6"
@@ -63,7 +68,7 @@ def mainMenu
 end
 
 # Get two inputs from user for operation 1 to 5
-def getInputs
+def get_inputs
   puts "Enter first number"
   first = gets.chomp.to_i
 
@@ -86,18 +91,28 @@ def mortgage
 
   # Calculation and printout
   monthly = principle*interest*((1+interest)**numberOfPayments)/(((1+interest)**numberOfPayments)-1)
-  puts "Monthly payment is #{monthly}"
+  puts "Monthly payment is #{monthly.round(2)}"
 end
 
 def calculateBMI
   # Get required inputs
   puts "Enter your weight (kg)"
   weight = gets.chomp.to_f
-  puts "Enter your height (m)"
-  height = gets.chomp.to_f
+  puts "Enter your height (cm)"
+  height = gets.chomp.to_f/100
+  userBMI = weight/height/height
 
+  if userBMI < 18.5
+    comment = "(Underweight)"
+  elsif userBMI < 25
+    comment = "(Normal weight)"
+  elsif userBMI < 29
+    comment = "(Overweight)"
+  else
+    comment = "(Obese)"
+  end
   # Calculation and printout
-  puts "Your BMI is #{(weight/height/height)}"
+  puts "Your BMI is #{userBMI.round(2)} #{comment}."
 end
 
 def tripCost
@@ -109,8 +124,9 @@ def tripCost
   puts "Enter gas price ($ per gallon)"
   price = gets.chomp.to_f
 
+  cost = price*distance/consumption
   # Calculation and printout
-  puts "The cost of this trip is #{(price*distance/consumption)}"
+  puts "The cost of this trip is #{cost.round(2)}"
 end
 
 mainMenu
