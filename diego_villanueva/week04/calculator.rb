@@ -8,7 +8,7 @@ while selection != 10
   puts " 2: -"
   puts " 3: x"
   puts " 4: /"
-  puts " 5: exponent"
+  puts " 5: exponent" 
   puts " 6: square root"
   puts " 7: mortgage calculator"
   puts " 8: BMI calculator"
