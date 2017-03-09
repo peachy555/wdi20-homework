@@ -21,8 +21,8 @@ get '/search' do
 end
 
 get '/movie_details' do
-  id = params[:id]
-  @movie_details = HTTParty.get("http://www.omdbapi.com/?i=#{id}")
+  @id = params[:id]
+  @movie_details = HTTParty.get("http://www.omdbapi.com/?i=#{@id}")
   puts @movie_details
   erb :movie_details, layout: :main_layout
 end

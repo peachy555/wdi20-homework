@@ -2,7 +2,8 @@
   <h2>List of search matches</h2>
   <ol>
     <% @top_5.each do |el| %>
-      <li><a href="/movie_details?id=<%= el["imdbID"] %>"><%= "#{el["Title"]} (#{el["Year"]})" %></a></li>
+    <% @id = el["imdbID"] %>
+      <li><a href="/movie_details?id=<%= @id %>"><%= "#{el["Title"]} (#{el["Year"]})" %></a></li>
     <% end %>
   </ol>
 </div>
