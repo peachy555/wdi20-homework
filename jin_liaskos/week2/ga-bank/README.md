@@ -13,7 +13,7 @@ with building out the logic using JavaScript.
 
 ###Specification:
 
-* Keep track of the checking and savings balances somewhere  -->
+* Keep track of the checking and savings balances somewhere
 * Add functionality so that a user can deposit money into one of the bank accounts.
 * Make sure you are updating the display and manipulating the HTML of the page
 so a user can see the change.
