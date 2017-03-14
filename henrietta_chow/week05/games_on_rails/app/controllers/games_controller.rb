@@ -1,9 +1,15 @@
 class GamesController < ApplicationController
 
+  def magic
+  end
+
   def answer
     answers_arr = ["Without a doubt", "Most likely", "Outlook is good", "Yes", "Signs point to yes", "Ask again later", "Better not tell you now", "Concentrate and ask again", "Don't count on it", "My sources say no", "Outlook not so good", "Very doubtful"]
 
     @answer = answers_arr.sample #[random(12)]
+  end
+
+  def secret_numbers
   end
 
   def guess
@@ -13,6 +19,9 @@ class GamesController < ApplicationController
     else
       @secret_number_result = "Try again"
     end
+  end
+
+  def rock_paper_scissors
   end
 
   def rock_paper_scissors_play
