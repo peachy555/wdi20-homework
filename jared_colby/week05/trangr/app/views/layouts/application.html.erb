@@ -9,6 +9,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "includes/navigation" %>
+
+    <div class="ui main text container">
+      <%= render "includes/flash_notices" %>
+      <%= yield %>
+    </div>
+    <%= render "includes/footer" %>
   </body>
 </html>
