@@ -30,16 +30,21 @@ class CountriesController < ApplicationController
   def update
     @country = Country.find(params[:id])
     if @country.update_attributes(clean_params)
-      redirect_to controller: "countries", action: "show", country_id: @country.id
+      redirect_to controller: "countries", action: "show", id: params[:id]
     else
       render :edit
     end
   end
 
   def destroy
-    Country.find(params[:country_id]).destroy
-    redirect_to root_path
-  end
+    if @current_user.admin
+      country = Country.find(params[:id]).destroy
+      flash[:success] = "You deleted #{country.name}."
+      redirect_to root_path
+    else
+      flash[:error] = "Action denied"
+      redirect_to root_path
+   end
 
   private
 
