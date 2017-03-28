@@ -27,15 +27,15 @@ get "/music/search" do
 end
 
 get "/music/search/genre" do
-  @search_results = Musician.where(genre: params[:genre])
-  # @search_results = settings.db.execute "SELECT * FROM musicians WHERE genre LIKE '#{params[:genre]}';"
+  # @search_results = Musician.where(genre: params[:genre])
+  @search_results = settings.db.execute "SELECT * FROM musicians WHERE genre LIKE '#{params[:genre]}';"
 
   erb :search_results, layout: :main
 end
 
 get "/music/search/name" do
-  @search_results = Musician.where(name: params[:name])
-  # @search_results = settings.db.execute "SELECT * FROM musicians WHERE name LIKE '#{params[:name]}';"
+  # @search_results = Musician.where(name: params[:name])
+  @search_results = settings.db.execute "SELECT * FROM musicians WHERE name LIKE '#{params[:name]}';"
 
   erb :search_results, layout: :main
 end
