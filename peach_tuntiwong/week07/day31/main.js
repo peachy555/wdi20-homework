@@ -16,43 +16,27 @@ $(document).ready(function(){
     var search_text = $("#search_field").val();
     var search_topic = $("#search_topic").val();
 
-    // Loop through all movies to call for all movies details, for searching
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function(){
-      if(xhr.readyState == 4) {
-        var json_response = JSON.parse(xhr.responseText);
-        json_response.Search.forEach(function(el) {
-
-          // Calling another AJAX for more details for search topics
-          var xhr2 = new XMLHttpRequest();
-
-          xhr2.onreadystatechange = function(){
-            if(xhr2.readyState == 4) {
-              var json_response2 = JSON.parse(xhr2.responseText);
-
-              // Search according to search_topic and user's input text (case sensitive)
-              if(json_response2[search_topic].indexOf(search_text) >= 0) {
-                displayMovie(json_response2);
-              }
-
+    $.ajax({
+      url: "http://www.omdbapi.com/?s=a&y=2016&type=movie",
+      method: "GET",
+      success: function(data){
+        data.Search.forEach(function(el){
+          $.ajax({
+            url: "http://www.omdbapi.com/?i="+el.imdbID,
+            method: "GET",
+            success: function(data2){
+              (data2[search_topic].indexOf(search_text) >= 0) ? displayMovie(data2) : null;
             }
-          };
-          xhr2.open("GET", "http://www.omdbapi.com/?i="+el.imdbID);
-          xhr2.send();
-        });
+          });
+        })
       }
-    };
-    xhr.open("GET", "http://www.omdbapi.com/?s=a&y=2016&type=movie");
-    xhr.send();
-  };
+    });
+  }
 
   // Eventlisteners for single search
   // Enter key
   $(document).keypress(function(e) {
-    if(e.which == 13) {
-      searchMovie();
-    }
+    e.which == 13 ? searchMovie() : null;
   });
 
   // Submit button
@@ -63,41 +47,28 @@ $(document).ready(function(){
   // Listing all movies (RHS button)
   $("#search").on("click", function(){
     $("#movie_display").empty();
-
-    var xhr = new XMLHttpRequest();
-
-    // Display all movies
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState == 4) {
-        var json_response = JSON.parse(xhr.responseText);
-        json_response.Search.forEach(function(el) {
+    $.ajax({
+      url: "http://www.omdbapi.com/?s=a&y=2016&type=movie",
+      method: "GET",
+      success: function(data){
+        data.Search.forEach(function(el){
           displayMovie(el);
-        });
+        })
       }
-    };
-    xhr.open("GET", "http://www.omdbapi.com/?s=a&y=2016&type=movie");
-    xhr.send();
+    });
   });
 
   // Get movie plot when click on poster image
   $(document).on("click", "img", function(){
     var id = $(this).data("movie-id");
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState == 4) {
-        var json_response = JSON.parse(xhr.responseText);
-
-        // Check if the movie_div doesn't have plot displayed
-        if($("#"+ json_response.imdbID).children().is("p") == false){
-          var plot = $("#"+ json_response.imdbID).append($("<p>").html(json_response.Plot));
-        }
-
+    $.ajax({
+      url: "http://www.omdbapi.com/?i=" + id,
+      method: "GET",
+      success: function(data) {
+        $("#"+ data.imdbID).children().is("p") == false ?
+          $("#"+ data.imdbID).append($("<p>").html(data.Plot)) : null;
       }
-    };
-
-    xhr.open("GET", "http://www.omdbapi.com/?i=" + id);
-    xhr.send();
+    });
   });
 
   // Semantics stuffs
@@ -107,4 +78,12 @@ $(document).ready(function(){
       transition: 'drop'
     });
 
+  // Empty search field, blur/focus
+  $("#search_field").on("focus", function() {
+    this.value == this.defaultValue ? this.value='' : null;
+  });
+
+  $("#search_field").on("blur", function() {
+    this.value == '' ? this.value=this.defaultValue : null;
+  });
 });

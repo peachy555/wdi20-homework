@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather mapping</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <!-- include css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/google_map.css">
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <!-- included js -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/google_map.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+    <!-- <div class="weather_info"id="popup_transparent_background">
+      <div class="ui existing segment weather_info" id="popup_display">
+        <i class="remove icon"></i>
+        <div class="forcast_element country">Weather in XX</div>
+        <div class="forcast_element temp_curr">XX°C</div>
+        <div class="forcast_element temp_range">Max: XX°C, Min: XX°C</div>
+        <div class="forcast_element weather_status">Weather Status, Windy</div>
+        <div class="forcast_element rain"></div>
+        <div class="forcast_element humidy">Humidity: XX%</div>
+        <div class="forcast_element wind">Wind</div>
+        <div class="forcast_element cloudiness">Cloudiness</div>
+        <div class="forcast_element sun">Sunrise: XX:XX, Sunset: XX:XX</div>
+        <div class="forcast_element coor">Geo coor</div>
+      </div>
+    </div> -->
+
+    <div id="map"></div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbTWDpEJCxDPVvdDt1SMPPvUA9SnSQXL4&callback=initMap">
+    </script>
+  </body>
+
+</html>
